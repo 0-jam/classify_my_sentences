@@ -8,7 +8,6 @@ from pathlib import Path
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 
 from modules.transform_text import deconjugate_sentence, remove_stopwords
-# from modules.transform_text import extract_nouns, remove_stopwords
 
 
 # 引数sentenceを整形
@@ -25,14 +24,12 @@ def replace_sentence(sentence):
 def preprocess_text(text):
     normalized_text = replace_sentence(text.strip())
     divided_text = deconjugate_sentence(normalized_text)
-    # divided_text = extract_nouns(normalized_text)
 
     return remove_stopwords(divided_text)
 
 
 def main():
     parser = argparse.ArgumentParser(description='Classify sentence with doc2vec')
-    # Required arguments
     parser.add_argument('input', type=str, help='Input JSON file path generated from utanet_scraper.py')
     parser.add_argument('generated_file', type=str, help='Generated lyrics from rnn_sentence.py')
     parser.add_argument('--d2vmodel', type=str, help='Doc2vec model path')
