@@ -8,6 +8,7 @@ gensim = "*"
 mecab-python3 = "*"
 beautifulscraper = "*"
 tqdm = "*"
+python-levenshtein = "*"
 
 [dev-packages]
 flake8 = "*"

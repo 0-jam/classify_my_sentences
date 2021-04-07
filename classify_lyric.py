@@ -55,7 +55,7 @@ def main():
     with Path(args.generated_file).open() as generated_lyrics:
         for i, generated_lyric in enumerate(generated_lyrics):
             print('Song', i)
-            print(d2vmodel.docvecs.most_similar([d2vmodel.infer_vector(preprocess_text(generated_lyric))]))
+            print(d2vmodel.dv.most_similar([d2vmodel.infer_vector(preprocess_text(generated_lyric))]))
 
 
 if __name__ == '__main__':
