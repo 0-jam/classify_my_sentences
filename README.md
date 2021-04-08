@@ -26,10 +26,10 @@
 
 `$ pipenv run python utanet_scraper.py`
 
-曲 ID を1（引数 `starts_with` で変更可能）から順番に曲情報を保存していく
-指定された ID が欠番ならそれを飛ばして次の ID を抽出しにいく
-`Ctrl + C` で強制終了しないと止まらないので注意
-抽出結果 JSON は以下の通り：
+- 曲 ID を1（引数 `starts_with` で変更可能）から順番に曲情報を保存していく
+    - 指定された ID が欠番ならそれを飛ばして次の ID を抽出しにいく
+- `Ctrl + C` で強制終了しないと止まらないので注意
+- 抽出結果 JSON は以下の通り：
 
 ```json
 {
@@ -45,14 +45,15 @@
 
 ### cat_json.py
 
-- 指定したディレクトリ内のJSONファイルを結合する
-
 `$ pipenv run python cat_json.py text/lyrics_json_dir lyrics_all.json`
+
+指定したディレクトリ内の JSON ファイルを結合する
 
 ### json_extractor.py
 
-- [utanet_scraper.py](#utanet_scraperpy) で出力した JSON から属性を一つ選んで抽出
-    - デフォルトの属性：lyrics
+`$ pipenv run python json_extractor.py akimoto.json akimoto_lyrics.txt`
+
+- [utanet_scraper.py](#utanet_scraperpy) で出力した JSON から属性（デフォルト：lyrics）を一つ選んで抽出
 - 抽出された属性はテキストで保存される
     - 曲ごとに改行
 - 指定できる属性：
@@ -62,5 +63,3 @@
     - 'lyricist'
     - 'composer'
     - 'lyric'
-
-`$ pipenv run python json_extractor.py akimoto.json akimoto_lyrics.txt`
