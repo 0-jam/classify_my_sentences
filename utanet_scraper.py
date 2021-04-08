@@ -1,44 +1,9 @@
 import argparse
 import json
-import time
 import urllib
 from pathlib import Path
 
-from beautifulscraper import BeautifulScraper
-
-scraper = BeautifulScraper()
-domain = 'https://www.uta-net.com'
-
-
-def get_page(url):
-    body = scraper.go(url)
-    time.sleep(1.0)
-
-    return body
-
-
-def extract_song(song_id):
-    song_url = domain + song_id
-
-    print('曲データを抽出しています：', song_url)
-
-    body = get_page(song_url)
-    title = body.select('.song-infoboard h2')[0].text
-    # 歌詞内の改行を半角スラッシュ/に置換して抽出
-    lyric = body.find(id='kashi_area').get_text('/')
-    artist = body.select('[itemprop="recordedAs"]')[0].text.strip()
-    lyricist = body.select('[itemprop="lyricist"]')[0].text
-    composer = body.select('[itemprop="composer"]')[0].text
-
-    return {
-        song_id: {
-            'title': title,
-            'lyric': lyric,
-            'artist': artist,
-            'lyricist': lyricist,
-            'composer': composer,
-        }
-    }
+from modules.utanet import extract_song
 
 
 def main():
