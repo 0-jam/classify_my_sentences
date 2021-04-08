@@ -4,11 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-gensim = "*"
-mecab-python3 = "*"
 beautifulscraper = "*"
-tqdm = "*"
-python-levenshtein = "*"
 
 [dev-packages]
 flake8 = "*"
