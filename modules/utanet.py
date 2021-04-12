@@ -25,8 +25,9 @@ match_modes = {
 
 
 def get_page(url):
-    body = scraper.go(url)
     time.sleep(1.0)
+
+    body = scraper.go(url)
 
     return body
 
