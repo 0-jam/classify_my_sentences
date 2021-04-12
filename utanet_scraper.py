@@ -18,12 +18,19 @@ def main():
     song_count = args.starts_with
     while True:
         try:
+            song_json_path = output_dir.joinpath('{}.json'.format(song_count))
+
+            if song_json_path.is_file():
+                print('スキップ：ファイル "{}" は既に存在します'.format(song_json_path))
+
+                continue
+
             song_dict = extract_song('/song/{}/'.format(song_count))
 
-            with output_dir.joinpath('{}.json'.format(song_count)).open('w', encoding='utf-8') as song_json:
+            with song_json_path.open('w', encoding='utf-8') as song_json:
                 song_json.write(json.dumps(song_dict, ensure_ascii=False, indent=2))
         except urllib.error.HTTPError:
-            print('ID が見つかりません')
+            print('ID: {} が見つかりません'.format(song_count))
 
             continue
         finally:
